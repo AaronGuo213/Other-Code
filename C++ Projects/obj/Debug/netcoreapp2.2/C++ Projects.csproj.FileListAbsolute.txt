@@ -1,0 +1,4 @@
+C:\Users\13107\Desktop\Meaningful Stuff\Coding\C++ Projects\obj\Debug\netcoreapp2.2\C++ Projects.csprojAssemblyReference.cache
+C:\Users\13107\Desktop\Meaningful Stuff\Coding\C++ Projects\obj\Debug\netcoreapp2.2\C++ Projects.csproj.CoreCompileInputs.cache
+C:\Users\13107\Desktop\Meaningful Stuff\Coding\C++ Projects\obj\Debug\netcoreapp2.2\C++ Projects.AssemblyInfoInputs.cache
+C:\Users\13107\Desktop\Meaningful Stuff\Coding\C++ Projects\obj\Debug\netcoreapp2.2\C++ Projects.AssemblyInfo.cs
