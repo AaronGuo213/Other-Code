@@ -1,0 +1,10 @@
+https://www.mathworks.com/matlabcentral/mlc-downloads/downloads/submissions/47593/versions/18/previews/documentation/modules/mobile/html/TrajectoryPlanDocumentation.html
+
+*constant velocity for now*
+take in headings and positions
+convert to x and y stuff
+get x vs t and y vs t functions
+combine to get the full graph
+split up cubic function into parts
+use curvature equation to get curvatures for each segment
+run each segment

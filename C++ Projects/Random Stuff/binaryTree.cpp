@@ -9,7 +9,7 @@ struct node {
 
 };
 
-struct node* newNode(int idata) {
+node* newNode(int idata) {
 
     node* node = new struct node;
     node -> data = idata;
@@ -23,7 +23,7 @@ int main() {
 
     node* root = newNode(10);
     root -> left = newNode(5);
-    root -> right = newNode(15);
+    //root -> right = newNode(15);
     cout << " " << root->data << endl << root->left->data << "  " << root->right->data;
 
 }
