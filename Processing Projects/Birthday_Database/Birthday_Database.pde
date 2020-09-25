@@ -360,8 +360,11 @@ void updateBirthdayDB() {
       if(j == 3) 
         output = output.equals("Male") ? "M" : "F";
       else if(j == 4) {
-        output = peopleInfo[currentPage*10+i][4] + "/" + peopleInfo[currentPage*10+i][5] + "/";
-        output += Integer.parseInt(peopleInfo[currentPage*10+i][6]) == 0 ? "????" : peopleInfo[currentPage*10+i][6]; //if year isnt known
+        output = Integer.parseInt(peopleInfo[currentPage*10+i][4]) == 0 ? "?" : peopleInfo[currentPage*10+i][4]; // month
+        output += "/";
+        output += Integer.parseInt(peopleInfo[currentPage*10+i][5]) == 0 ? "?" : peopleInfo[currentPage*10+i][5]; // day
+        output += "/";
+        output += Integer.parseInt(peopleInfo[currentPage*10+i][6]) == 0 ? "?" : peopleInfo[currentPage*10+i][6]; // year
       }
       text(output, miniIndent+linePos[j], 200+i*50);
     }
