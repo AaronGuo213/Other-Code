@@ -167,13 +167,11 @@ data.splice(data.length, 0, new Person("Daniel", "Belzberg", "", "Male", 24, 2, 
 data.splice(data.length, 0, new Person("Vidyuth", "Thattai", "Vidy", "Male", 31, 3, 2003));
 data.splice(data.length, 0, new Person("Ash", "Guo", "", "Male", 13, 11, 2017));
 data.splice(data.length, 0, new Person("Marko", "Nikoletic", "", "Male", 16, 5, 2002));
-data.splice(data.length, 0, new Person("Troy", "Burad", "", "Male", 23, 3, 2003));
 data.splice(data.length, 0, new Person("Meiers", "Dixon", "", "Male", 5, 3, 2003));
 data.splice(data.length, 0, new Person("David", "Maemoto", "Dave", "Male", 24, 6, 2004));
 data.splice(data.length, 0, new Person("Karl", "Velazquez", "", "Male", 19, 7, 2003));
 data.splice(data.length, 0, new Person("Dominic", "Yore", "Dom", "Male", 8, 8, 2002));
 data.splice(data.length, 0, new Person("Cole", "Welcher", "", "Male", 22, 12, 2002));
-data.splice(data.length, 0, new Person("Cara", "Greene", "Mrs. Greene", "Female", 14, 7, 1971));
 data.splice(data.length, 0, new Person("Tony", "Cha", "", "Male", 14, 2, 2005));
 data.splice(data.length, 0, new Person("Silas", "John", "", "Male", 14, 2, 2003));
 data.splice(data.length, 0, new Person("John", "Kim", "", "Male", 26, 8, 2003));
@@ -200,7 +198,6 @@ data.splice(data.length, 0, new Person("David", "Rosanes", "Uncle David", "Male"
 data.splice(data.length, 0, new Person("Tyler", "Ewald", "Ewald", "Male", 3, 1, 2003));
 data.splice(data.length, 0, new Person("Lorraine", "Norris", "Mrs. Norris", "Female", 11, 9, 1970));
 data.splice(data.length, 0, new Person("Hayden", "Greene", "", "Male", 21, 7, 2005));
-data.splice(data.length, 0, new Person("Cara", "Greene", "Cam's Mom", "Female", 14, 6, 0));
 data.splice(data.length, 0, new Person("Brian", "Greene", "Cam's Dad", "Male", 10, 5, 0));
 data.splice(data.length, 0, new Person("Luna", "Greene", "", "Female", 10, 6, 2019));
 data.splice(data.length, 0, new Person("Pam", "Ewald", "Ms. Ewald", "Female", 3, 11, 1965));
@@ -217,6 +214,20 @@ data.splice(data.length, 0, new Person("Troy", "Burad", "", "Male", 23, 3, 2003)
 data.splice(data.length, 0, new Person("Lainey", "Cote", "", "Female", 11, 10, 2003));
 data.splice(data.length, 0, new Person("Sydney", "Singh", "", "Female", 12, 3, 2003));
 data.splice(data.length, 0, new Person("Hanna", "Karnes", "", "Female", 22, 9, 2002));
+data.splice(data.length, 0, new Person("Sam", "Nam", "", "Male", 2, 10, 2000));
+data.splice(data.length, 0, new Person("Robby", "Marshall", "", "Male", 3, 10, 2003));
+data.splice(data.length, 0, new Person("John", "Macmenamie", "JMac", "Male", 26, 10, 2002));
+data.splice(data.length, 0, new Person("Margarita", "Kanarsky", "Professor Kanarsky", "Female", 6, 10, 0));
+data.splice(data.length, 0, new Person("Amyrah", "Doty", "", "Female", 8, 10, 2003));
+data.splice(data.length, 0, new Person("Gavin", "Peters", "", "Male", 23, 10, 2002));
+data.splice(data.length, 0, new Person("Cara", "Greene", "Cam's Mom", "Female", 14, 7, 0));
+data.splice(data.length, 0, new Person("Apollo", "Ewald", "", "Male", 17, 10, 2014));
+data.splice(data.length, 0, new Person("Thomas", "Ewald", "Tyler's Dad", "Male", 31, 5, 1967));
+data.splice(data.length, 0, new Person("Alex", "Ewald", "", "Male", 30, 4, 2004));
+data.splice(data.length, 0, new Person("Carolyn", "Ewald", "Tyler's Stepmom", "Female", 18, 3, 1968));
+data.splice(data.length, 0, new Person("Grant", "Liu", "", "Male", 28, 10, 2008));
+data.splice(data.length, 0, new Person("Michael", "Swatek", "Mr. Swatek", "Male", 2, 11, 0));
+data.splice(data.length, 0, new Person("Malia", "Shitabata", "", "Female", 25, 11, 2000));
 //hehe secret code
 
 /*=============
@@ -295,8 +306,14 @@ function updateTaskList(people) {
         else { //otherwise make it normal
             var nameTag = "<span class='name'>" + commonName + "'s<span class=popup><span class=fName>" + fullName + "</span></span></span>";
         }
-        //creates sentence
-        var ageStr = people[index[i]].year == undefined ? "" : age + suffix;
+        // finishes the sentence
+        var ageStr;
+        if(people[index[i]].birthday.year == 0) {
+            ageStr = "";
+        }
+        else{
+            ageStr = age + suffix;
+        }
         listContent += "<li><span class='point'>" + nameTag + " " + ageStr + " birthday is ";
         if(days[i] == 0) {
             listContent += "today! Say happy birthday to ";
@@ -406,7 +423,7 @@ function updateRainbow() {
 ASH PICTURE METHODS
 =================*/
 
-const numPhotos = 60;
+const numPhotos = 70;
 var usedPhotos = new Array(numPhotos);
 var currentID;
 var op1 = 1;
@@ -473,8 +490,8 @@ function firstPhoto() {
 
 function switchPhoto() {
 
-    var str = "<img src=" + getCurrentPhoto() + " alt=\"missing ash\" width=\"25%\" class=\"currentImg\"></img>\n";
-    var str2 = "<img src=" + choosePhoto() + " alt=\"missing ash\" width=\"25%\" class=\"nextImg\"></img>";
+    var str = "<img src=" + getCurrentPhoto() + " alt=\"missing ash\" width=\"24%\" class=\"currentImg\"></img>\n";
+    var str2 = "<img src=" + choosePhoto() + " alt=\"missing ash\" width=\"24%\" class=\"nextImg\"></img>";
     var img = document.querySelector(".images");
     img.innerHTML = str+str2;
     op1 = 1;
