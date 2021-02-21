@@ -1,0 +1,2 @@
+
+string separate(string fullName) {

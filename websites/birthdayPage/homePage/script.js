@@ -14,18 +14,18 @@ function createHeader() {
     let headerText = "<h1>";
 
     if(hour >= 3 && hour < 12)
-        headerText += "Good Morning, Aaron";
+        headerText += "Good Morning,<br>Aaron!";
     else if(hour >= 12 && hour < 18)
-        headerText += "Good Afternoon, Aaron";
+        headerText += "Good Afternoon,<br>Aaron!";
     else if(hour >= 18 || hour < 3)
-        headerText += "Good Evening, Aaron";
+        headerText += "Good Evening,<br>Aaron!";
 
     headerText += "</h1>\n"
     headerText += "<h2>Today is ";
 
     var dayArr = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     var monthArr = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    headerText += dayArr[day] + ", ";
+    headerText += dayArr[day] + ",<br>";
     headerText += monthArr[month-1] + " "; //0 is january, so must -1
     headerText += date + ", " + year + "</h2>";
 
@@ -47,6 +47,11 @@ function updateTime() {
     //Title
     var clock = document.querySelector(".clock");
     var headerText = "<h1>" + formatTime(hour) + ":" + formatTime(minute) + ":" + formatTime(second) + "</h1>"; //time
+
+    // Selecting colors
+    var colorArr = [["white", "skyblue"], ["pink", "red"], ["limegreen", "green"], ["skyblue", "violet"], ["yellow", "hotpink"], ["indigo", "yellow"], ["tan", "orangered"], ["darkorange", "firebrick"], ["indigo", "royalblue"], ["black", "orange"], ["rgb(94, 48, 15)", "goldenrod"], ["green", "red"]];
+    clock.style.backgroundColor = colorArr[month-1][0];
+    clock.style.color = colorArr[month-1][1];
 
     clock.innerHTML = headerText;
 
@@ -228,6 +233,16 @@ data.splice(data.length, 0, new Person("Carolyn", "Ewald", "Tyler's Stepmom", "F
 data.splice(data.length, 0, new Person("Grant", "Liu", "", "Male", 28, 10, 2008));
 data.splice(data.length, 0, new Person("Michael", "Swatek", "Mr. Swatek", "Male", 2, 11, 0));
 data.splice(data.length, 0, new Person("Malia", "Shitabata", "", "Female", 25, 11, 2000));
+data.splice(data.length, 0, new Person("Abbie", "Maemoto", "", "Female", 5, 12, 2002));
+data.splice(data.length, 0, new Person("Grace's Dad", "Liu", "Grace's Dad", "Male", 16, 12, 0));
+data.splice(data.length, 0, new Person("Grace's Mom", "Liu", "Grace's Mom", "Female", 18, 7, 0));
+data.splice(data.length, 0, new Person("Amber", "Liu", "", "Female", 30, 4, 2015));
+data.splice(data.length, 0, new Person("ba co", "Quach", "ba co", "Female", 15, 12, 1922));
+data.splice(data.length, 0, new Person("Jordan", "Ewald", "", "Male", 22, 1, 2000));
+data.splice(data.length, 0, new Person("Ian", "Kim", "", "Male", 8, 11, 2002));
+data.splice(data.length, 0, new Person("Amyrah", "Dotti", "", "Female", 8, 10, 2003));
+data.splice(data.length, 0, new Person("Trent", "Giacalone", "", "Male", 16, 2, 2003));
+data.splice(data.length, 0, new Person("Talia", "Hajjar", "", "Female", 30, 4, 2003));
 //hehe secret code
 
 /*=============
@@ -278,19 +293,22 @@ function updateTaskList(people) {
 
         if(days[i] > 7 && !phase) { //goes to month events after week events finished
             if(i == 0)
-                listContent += "<li>No birthdays within a week from now.</li>"
+                listContent += "<li><span class='point'>No birthdays within a week from now.</span></li>"
             listContent += "<h2>This Month</h2>";
             phase = true;
             lastBDayThisWeek = i;
         }
         if(people[index[i]].birthday.month != month && phase) {
             if(i == lastBDayThisWeek)
-                listContent += "<li>No more birthdays for the rest of the month. :(</li>"
+                listContent += "<li><span class='point'>No more birthdays for the rest of the month. :(</span></li>"
             break;
         }
 
         //age of the person + suffix
         var age = year - people[index[i]].birthday.year;
+        if(month == 12 && people[index[i]].birthday.month == 1) {
+            age ++; // add 1 to the age if the birthday is in the following year
+        } 
         var suffix;
         if(age % 10 == 1) suffix = "st";
         else if(age % 10 == 2) suffix = "nd";
@@ -423,75 +441,101 @@ function updateRainbow() {
 ASH PICTURE METHODS
 =================*/
 
-const numPhotos = 70;
-var usedPhotos = new Array(numPhotos);
-var currentID;
+const numPhotos = 87;
 var op1 = 1;
 var op2 = 0;
+var isChanging = true;
+var nextChange;
+var queue = new Array(numPhotos);
+var queueID;
+
+function resetQueue() {
+
+    for(var i = 0; i < numPhotos; i++) {
+        queue[i] = i;
+    }
+    var num1, num2, temp;
+    for(var i = 0; i < 1e5; i++) {
+        num1 = Math.floor(Math.random()*numPhotos);
+        num2 = Math.floor(Math.random()*numPhotos);
+        temp = queue[num1];
+        queue[num1] = queue[num2];
+        queue[num2] = temp;
+    }
+    queueID = 0;
+    console.log(queue);
+
+}
 
 function choosePhoto() {
 
-    var photoID = updateLoop() + 1;
-    currentID = photoID;
-    var str = "\"../images/ASH COLLAGE/ (" + photoID + ").jpg\"";
+    if(queueID == numPhotos) {
+        resetQueue();
+    }
+    var str = "\"../images/ASH COLLAGE/ASH (" + queue[queueID] + ").jpg\"";
+    queueID ++;
     return str;
 
 }
 
 function getCurrentPhoto() {
 
-    var str = "\"../images/ASH COLLAGE/ (" + currentID + ").jpg\"";
+    var str = "\"../images/ASH COLLAGE/ASH (" + queue[queueID-1] + ").jpg\"";
     return str;
 
 }
 
-function updateLoop() {
+function getLastPhoto() {
 
-    var isLoopFinished = true;
-    var photoID;
-    for(var i = 0; i < numPhotos; i++) {
-        if(usedPhotos[i] == false)
-            isLoopFinished = false;
+    console.log(queueID);
+    if(queueID-2 >= 0) {
+        var str = "\"../images/ASH COLLAGE/ASH (" + queue[queueID-2] + ").jpg\"";
+        queueID --;
+        return str;
     }
 
-    // resets loop if finished
-    if(isLoopFinished) {
-        for(var i = 0; i < numPhotos; i++) {
-            usedPhotos[i] = false;
-        }
-    }
-    // otherwise chooses new photo
     else {
-        photoID = Math.floor(Math.random()*numPhotos);
-        while(usedPhotos[photoID]) {
-            photoID = Math.floor(Math.random()*numPhotos);
-        }
-        usedPhotos[photoID] = true;
-        return photoID;
+        return "\"../images/ASH COLLAGE/ASH (" + queue[0] + ").jpg\"";
     }
-    // only if loop is reset
-    photoID = Math.floor(Math.random()*numPhotos);
-    usedPhotos[photoID] = true;
-    return photoID;
 
 }
 
 function firstPhoto() {
 
-    var str = "<img src=" + choosePhoto() + " alt=\"missing ash\" width=\"500\" class=\"currentImg\"></img>";
+    var str = "<img src=" + choosePhoto() + " alt=\"missing ash\" width=\"30%\" class=\"nextImg\"></img>";
     var img = document.querySelector(".images");
     img.innerHTML = str;
-    // reseting photo order
-    for(var i = 0; i < numPhotos; i++) {
-        usedPhotos[i] = false;
+
+}
+
+function updateFrameHeights() {
+    // setting the height of the old frame
+    document.querySelector(".prevFrame").style.height = document.querySelector(".frame").clientHeight + "px";
+    // setting the height of the frame
+    document.querySelector(".frame").style.height = document.querySelector(".nextImg").clientHeight + (window.innerHeight* (0.08+0.03)) + "px"; // using image height and accounting for space above and below image
+
+}
+
+function switchPhoto(manual) {
+
+    if(isChanging || manual) {
+        // switching photos
+        var str = "<img src=" + getCurrentPhoto() + " alt=\"missing ash\" width=\"30%\" class=\"currentImg\"></img>\n";
+        var str2 = "<img src=" + choosePhoto() + " alt=\"missing ash\" width=\"30%\" class=\"nextImg\"></img>";
+        var img = document.querySelector(".images");
+        img.innerHTML = str+str2;
+        op1 = 1;
+        op2 = 0;
+        controlOpacities();
     }
 
 }
 
-function switchPhoto() {
+function rewindPhoto() {
 
-    var str = "<img src=" + getCurrentPhoto() + " alt=\"missing ash\" width=\"24%\" class=\"currentImg\"></img>\n";
-    var str2 = "<img src=" + choosePhoto() + " alt=\"missing ash\" width=\"24%\" class=\"nextImg\"></img>";
+    // switching photos
+    var str = "<img src=" + getCurrentPhoto() + " alt=\"missing ash\" width=\"30%\" class=\"currentImg\"></img>\n";
+    var str2 = "<img src=" + getLastPhoto() + " alt=\"missing ash\" width=\"30%\" class=\"nextImg\"></img>";
     var img = document.querySelector(".images");
     img.innerHTML = str+str2;
     op1 = 1;
@@ -518,20 +562,56 @@ function setOpacitites() {
 
     var picture1 = document.querySelectorAll(".currentImg");
     var picture2 = document.querySelectorAll(".nextImg");
+    var prevFrame = document.querySelector(".prevFrame");
     picture1[0].style.opacity = op1;
     picture2[0].style.opacity = op2;
+    prevFrame.style.opacity = op1;
 
+}
+
+/*================
+ASH BUTTON METHODS
+================*/
+
+function pausePlay() {
+    isChanging = !isChanging;
+    replaceButtons();
+}
+
+function goForwards() {
+    switchPhoto(true);
+    clearInterval(nextChange);
+    nextChange = setInterval(switchPhoto, 5000, false);
+    replaceButtons();
+}
+
+function goBackwards() {
+    console.log("hi");
+    rewindPhoto();
+    clearInterval(nextChange);
+    nextChange = setInterval(switchPhoto, 5000, false);
+    replaceButtons();
+}
+
+function replaceButtons() { // used to switch || to > and back or to remove the border when clicked
+    var str = "<button class=\"pausePlay\" onclick=\"pausePlay()\">" + (isChanging ? "||" : ">") + "</button>"; // flipping between pause and play signs
+    str += "<button class=\"backwards\" onclick=\"goBackwards()\"><<</button>\n<button class=\"forwards\" onclick=\"goForwards()\">>></button>"; // forwards and backwards button (needed otherwise they would disappear)
+    var html = document.querySelector(".ashButtons");
+    html.innerHTML = str;
 }
 
 /*====================
 WHAT ACTUALLY GETS RUN
 ====================*/
 
+resetQueue();
 createHeader();
 updateTime();
 firstPhoto();
+setTimeout(updateFrameHeights, 1);
+setInterval(updateFrameHeights, 100);
 setInterval(createHeader, 100);
 setInterval(updateTime, 100);
-setInterval(switchPhoto, 5000);
+nextChange = setInterval(switchPhoto, 5000, false);
 updateTaskList(data);
 rainbowName();

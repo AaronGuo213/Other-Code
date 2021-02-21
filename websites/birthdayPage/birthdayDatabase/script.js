@@ -132,6 +132,16 @@ data.splice(data.length, 0, new Person("Carolyn", "Ewald", "Tyler's Stepmom", "F
 data.splice(data.length, 0, new Person("Grant", "Liu", "", "Male", 28, 10, 2008));
 data.splice(data.length, 0, new Person("Michael", "Swatek", "Mr. Swatek", "Male", 2, 11, 0));
 data.splice(data.length, 0, new Person("Malia", "Shitabata", "", "Female", 25, 11, 2000));
+data.splice(data.length, 0, new Person("Abbie", "Maemoto", "", "Female", 5, 12, 2002));
+data.splice(data.length, 0, new Person("Grace's Dad", "Liu", "Grace's Dad", "Male", 16, 12, 0));
+data.splice(data.length, 0, new Person("Grace's Mom", "Liu", "Grace's Mom", "Female", 18, 7, 0));
+data.splice(data.length, 0, new Person("Amber", "Liu", "", "Female", 30, 4, 2015));
+data.splice(data.length, 0, new Person("ba co", "Quach", "ba co", "Female", 15, 12, 1922));
+data.splice(data.length, 0, new Person("Jordan", "Ewald", "", "Male", 22, 1, 2000));
+data.splice(data.length, 0, new Person("Ian", "Kim", "", "Male", 8, 11, 2002));
+data.splice(data.length, 0, new Person("Amyrah", "Dotti", "", "Female", 8, 10, 2003));
+data.splice(data.length, 0, new Person("Trent", "Giacalone", "", "Male", 16, 2, 2003));
+data.splice(data.length, 0, new Person("Talia", "Hajjar", "", "Female", 30, 4, 2003));
 //hehe secret code
 
 /*=============

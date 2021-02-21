@@ -1,129 +1,62 @@
-*{
+/*=====
+GENERAL
+=====*/
 
+*{
     margin:0;
     padding:0;
-
-}
-
-input:focus {
-    outline: none;
 }
 
 body {
-    background-color: #202020;
+    background-color: #101010;
 }
 
+/*===
+TITLE
+===*/
+
 .mainHeader {
-
     text-align: center;
-    background-color: #2E4BAE;
-
-    padding: 20px;
+    padding-top: 20px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-
 }
 
 .mainHeader h1 {
-
     font-size: 50px;
-    color: #CCCCCC;
-
+    color: deepskyblue;
 }
 
 .mainHeader h2 {
-
     font-size: 30px;
-    color: #CCCCCC;
-
+    color: deepskyblue;
 }
 
-.navBar .tab, .navBar .dropBtn {
-
-    background-color: black;
-    color: white;
-    font-size: 16px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    text-align: center;
-
-    padding: 10px;
-    border: 1px solid blue;
-    box-sizing: border-box;
-
-}
+/*=========
+HOME BUTTON
+=========*/
 
 .navBar .tab {
-
-    float: left;
-    width: 33.3%;
-    text-decoration: none;
-    outline: none;
-
-}
-
-.navBar .dropContent .tab p {
-
-    color: white;
-    font-size: 16px;
+    background-color: deepskyblue;
+    color: black;
+    font-size: 20px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     text-align: center;
-    text-decoration: none;
-
-}
-
-.navBar .tab .leftLogo {
-
-    width: 20px;
-    vertical-align: middle;
+    padding: 10px;
+    margin: 40px 33.85% 40px 33.85%;
+    border-radius: 15px;
+    box-sizing: border-box;
     float: left;
-
-}
-
-.navBar .tab .rightLogo {
-
-    width: 20px;
-    vertical-align: middle;
-    float: right;
-
-}
-
-.dropdown {
-
-    overflow: hidden;
-    width: 33.3%;
-
-}
-
-.dropBtn {
-
-    width: 100%;
+    width: 32.3%;
+    text-decoration: none;
     outline: none;
-
+    list-style: none;
 }
 
-.dropContent {
-
-    display:none;
-    position: absolute;
-    width: 100%;
-    z-index: 1;
-
-}
-
-.dropContent .tab {
-
-    float: none;
-    display: block;
-
-}
-
-.dropdown:hover .dropContent {
-
-    display:block;
-
-}
+/*======
+DATABASE
+======*/
 
 .database {
-
     color: #CCCCCC;
     width: 90%;
     max-width: 1000px;
@@ -132,15 +65,12 @@ body {
     box-sizing: border-box;
     border-collapse: collapse;
     margin-top: 20px;
-
 }
 
 .databse td, .database th {
-
     border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
-
 }
 
 .database tr:nth-child(even) {
@@ -149,4 +79,8 @@ body {
 
 .database tr:nth-child(odd) {
     background-color: #262626;
+}
+
+.database tr:nth-child(1) {
+    background-color: teal;
 }

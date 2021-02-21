@@ -9,8 +9,11 @@ void setup() {
 }
 
 void draw() {
+  // gets theta1 (angle of pivot from origin)
   theta1 = atan2(y1, x1);
+  // gets theta2 (angle of mouse from pivot)
   theta2 = atan2(mouseY - y1, mouseX - x1);
+  // gets d (distance from origin to the pivot)
   d = sqrt(x1 * x1 + y1 * y1);
   thetaF = theta1 - theta2;
   fill(255);
