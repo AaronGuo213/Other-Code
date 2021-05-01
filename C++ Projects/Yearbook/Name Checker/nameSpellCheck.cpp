@@ -35,13 +35,6 @@ vector<vector<string>> nameDB = {
 	{"Zacharia Ahmadi", "Zoey Belliveau", "Zachary Dawson", "Zoe Dearborn", "Zusan Hu", "Zachary Huang", "Zoe Hutchins", "Zane Johnson", "Zachary Kakazu", "Zoe Klein", "Zhengjie Li", "Zachary Moore", "Zachary Pearce", "Zoe Ruehr", "Zachary Schmidt  ", "Zoe Shafiezadeh  ", "Zoe Shippee  ", "Zackary Smith", "Zen Vibhakar", "Zander Zupon"}
 };
 
-// test
-/*vector<vector<string>> nameDB = {
-    {"Aaron Guo"},
-    {},
-    {"Cameron Greene"}
-};*/
-
 vector<string> getNames(string list) { //separates all the names from each other
 
     vector<string> names = {};

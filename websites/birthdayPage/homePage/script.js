@@ -63,55 +63,37 @@ function formatTime(input) {
     return input;
 }
 
-/*==============
-SEARCH BAR STUFF
-==============*/
+/*===========
+QUOTE METHODS
+===========*/
 
-const search = document.querySelector("#search");
-
-function goSearch() {
-
-    if(!searchThesaurus())
-    if(!searchYoutube())
-    if(!searchAmazon())
-        searchGoogle();
-
-    search.value = "";
-
-}
-
-function searchGoogle() { //searchbar google search
-    if(search.value == "")
-        window.location = "http://google.com";
-    else 
-        window.location = "http://google.com/search?q=" + search.value;
-}
-
-function searchThesaurus() { //searchbar keyword for thesaurus
-    if(search.value.substring(0, 9).toLowerCase() == "thesaurus") {
-        if(search.value.toLowerCase() == "thesaurus")
-            window.location = "https://www.thesaurus.com";
-        else
-            window.location = "https://www.thesaurus.com/browse/" + search.value.substring(9) + "?s=t";
-        return true;
-    }
-    return false;
-}
-
-function searchYoutube() { //searchbar keyword for youtube
-    if(search.value.toLowerCase() == "youtube" || search.value.toLowerCase() == "you") {
-        window.location = "https://www.youtube.com";
-        return true;
-    }
-    return false;
-}
-
-function searchAmazon() { //searchbar keyword for youtube
-    if(search.value.toLowerCase() == "amazon") {
-        window.location = "https://www.amazon.com";
-        return true;
-    }
-    return false;
+function updateQuote() {
+    // arbitrary base date to calculate week number from
+    var base =  new Date("3/1/2020");
+    // calculating number of days between now and base date
+    var numberOfDays = Math.floor((now - base) / (24 * 60 * 60 * 1000));   
+    // calculating week number 
+    var weekNum = Math.floor((numberOfDays) / 7) % 108;
+    var randomStr = "5ba4681372094a982b673510a42968b03751b935120a86740934165728ba58b37a401296608251a4b397a124985607b37416b928a503";
+    var quoteHTML = "<h1>";
+    var rule = [
+        "Rule 1: Stand up straight with your shoulders back",
+        "Rule 2: Treat yourself like you are someone you are responsible for helping",
+        "Rule 3: Make friends with people who want the best for you",
+        "Rule 4: Compare yourself with who you were yesterday, not with who someone else is today",
+        "Rule 5: Do not let your children do anything that makes you dislike them",
+        "Rule 6: Set your house in perfect order before you criticize the world",
+        "Rule 7: Pursue what is meaningful (not what is expedient)",
+        "Rule 8: Tell the truth - or, at least, don't lie",
+        "Rule 9: Assume that the person you are listening to might know something you don't",
+        "Rule 10: Be precise in your speech",
+        "Rule 11: Do not bother children when they are skate-boarding",
+        "Rule 12: Pet a cat when you encounter one on the street",
+    ]
+    var id = randomStr.charAt(weekNum) == 'a' ? 10 : randomStr.charAt(weekNum) == 'b' ? 11 : parseInt(randomStr.charAt(weekNum));
+    quoteHTML += rule[id] + "</h1>"; // puts in quote for the week
+    var quote = document.querySelector(".quote");
+    quote.innerHTML = quoteHTML;
 }
 
 /*============
@@ -151,7 +133,6 @@ data.splice(data.length, 0, new Person("Alex", "Guo", "Buk", "Male", 12, 11, 200
 data.splice(data.length, 0, new Person("Grace", "Liu", "", "Female", 3, 12, 2003));
 data.splice(data.length, 0, new Person("Shelby", "Ponce", "", "Female", 9, 6, 2003));
 data.splice(data.length, 0, new Person("Aaron", "Guo", "", "Male", 7, 6, 2003));
-data.splice(data.length, 0, new Person("Zach", "Huang", "", "Male", 2, 12, 2002));
 data.splice(data.length, 0, new Person("Elijah", "Huang", "Eli", "Male", 3, 11, 2004));
 data.splice(data.length, 0, new Person("Noah", "Lin", "", "Male", 4, 3, 2003));
 data.splice(data.length, 0, new Person("Jack", "Yang", "", "Male", 25, 3, 2003));
@@ -183,7 +164,6 @@ data.splice(data.length, 0, new Person("John", "Kim", "", "Male", 26, 8, 2003));
 data.splice(data.length, 0, new Person("Ian", "Blanco", "Blanco", "Male", 6, 6, 2003));
 data.splice(data.length, 0, new Person("Yeye", "Guo", "", "Male", 28, 4, 1938));
 data.splice(data.length, 0, new Person("Mike", "Quach", "Uncle Mike", "Male", 7, 10, 1973));
-data.splice(data.length, 0, new Person("Cammy", "Nguyen", "Bi Nam", "Female", 30, 5, 1978));
 data.splice(data.length, 0, new Person("Kevin", "Quach", "Uncle Kevin", "Male", 31, 3, 1975));
 data.splice(data.length, 0, new Person("Helen", "Quach", "Aunt Helen", "Female", 22, 5, 1972));
 data.splice(data.length, 0, new Person("Judy", "Ha", "Aunt Judy", "Female", 5, 5, 1976));
@@ -243,6 +223,16 @@ data.splice(data.length, 0, new Person("Ian", "Kim", "", "Male", 8, 11, 2002));
 data.splice(data.length, 0, new Person("Amyrah", "Dotti", "", "Female", 8, 10, 2003));
 data.splice(data.length, 0, new Person("Trent", "Giacalone", "", "Male", 16, 2, 2003));
 data.splice(data.length, 0, new Person("Talia", "Hajjar", "", "Female", 30, 4, 2003));
+data.splice(data.length, 0, new Person("Zach", "Huang", "Ziggy", "Male", 2, 12, 2002));
+data.splice(data.length, 0, new Person("Cammy", "Nguyen", "Co Nam", "Female", 30, 5, 1978));
+data.splice(data.length, 0, new Person("Chris", "Vasey", "", "Male", 27, 4, 2006));
+data.splice(data.length, 0, new Person("Aidan", "Eliasson", "", "Male", 9, 4, 2003));
+data.splice(data.length, 0, new Person("Scott", "Shimoyama", "", "Male", 7, 4, 2004));
+data.splice(data.length, 0, new Person("Aidan", "Forsey", "", "Male", 13, 7, 2003));
+data.splice(data.length, 0, new Person("Spencer", "Levin", "", "Male", 14, 9, 2002));
+data.splice(data.length, 0, new Person("Dolan", "Leeman", "", "Male", 21, 10, 2005));
+data.splice(data.length, 0, new Person("Bodi", "Brannen", "", "Male", 15, 10, 2002));
+data.splice(data.length, 0, new Person("Steel", "Weiss", "", "Male", 30, 4, 2005));
 //hehe secret code
 
 /*=============
@@ -452,7 +442,7 @@ var queueID;
 function resetQueue() {
 
     for(var i = 0; i < numPhotos; i++) {
-        queue[i] = i;
+        queue[i] = i + 1;
     }
     var num1, num2, temp;
     for(var i = 0; i < 1e5; i++) {
@@ -473,6 +463,7 @@ function choosePhoto() {
         resetQueue();
     }
     var str = "\"../images/ASH COLLAGE/ASH (" + queue[queueID] + ").jpg\"";
+    console.log(queue[queueID]);
     queueID ++;
     return str;
 
@@ -487,7 +478,6 @@ function getCurrentPhoto() {
 
 function getLastPhoto() {
 
-    console.log(queueID);
     if(queueID-2 >= 0) {
         var str = "\"../images/ASH COLLAGE/ASH (" + queue[queueID-2] + ").jpg\"";
         queueID --;
@@ -541,6 +531,7 @@ function rewindPhoto() {
     op1 = 1;
     op2 = 0;
     controlOpacities();
+    console.log(queue[queueID-1]);
 
 }
 
@@ -586,7 +577,6 @@ function goForwards() {
 }
 
 function goBackwards() {
-    console.log("hi");
     rewindPhoto();
     clearInterval(nextChange);
     nextChange = setInterval(switchPhoto, 5000, false);
@@ -607,11 +597,13 @@ WHAT ACTUALLY GETS RUN
 resetQueue();
 createHeader();
 updateTime();
+updateQuote();
 firstPhoto();
 setTimeout(updateFrameHeights, 1);
 setInterval(updateFrameHeights, 100);
 setInterval(createHeader, 100);
 setInterval(updateTime, 100);
+setInterval(updateQuote, 1000);
 nextChange = setInterval(switchPhoto, 5000, false);
 updateTaskList(data);
 rainbowName();
